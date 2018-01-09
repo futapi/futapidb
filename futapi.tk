@@ -1,0 +1,30 @@
+#!/sbin/openrc-run
+
+prog="futapi"
+host="$prog.tk"
+PROJECT_HOME="/home/fastweb/gunicorn/$host"
+#GUNICORN_PID="/var/run/gunicorn/$host.pid"
+GUNICORN_PID="/var/lock/$host.pid"
+
+RETVAL=0
+
+extra_started_commands="reload"
+
+depend() {
+	need net
+	use nginx
+}
+
+start() {
+	ebegin "Starting Gunicorn: $host"
+	cd ${PROJECT_HOME}
+	start-stop-daemon --start --pidfile ${GUNICORN_PID} --exec \
+            /usr/bin/gunicorn -- --config=gunicorn.conf --daemon --pid=${GUNICORN_PID} $prog.deploy:app
+	eend $? "Failed to start Gunicorn: $host"
+}
+
+stop() {
+	ebegin "Stopping Gunicorn: $host"
+	start-stop-daemon --signal QUIT --stop --exec /usr/bin/gunicorn --pidfile ${GUNICORN_PID}
+	eend $? "Failed to stop Gunicorn: $host"
+}

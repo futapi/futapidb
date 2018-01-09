@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+# import codecs
+
+log_file = '/var/log/gunicorn/futapi.tk_flask.log'
+
+# email
+smtp_user = ''
+smtp_passwd = ''
+# email_sender = {'email': '', 'name': ''}
+# email_admin = {'email': '', 'name': ''}    # TODO: name should be None
+# email_replyto = {'email': '', 'name': ''}
+
+# db
+sql_host = 'localhost'
+sql_db = 'futapi'
+sql_user = 'futapi'
+sql_pass = ''
