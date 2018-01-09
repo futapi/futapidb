@@ -7,7 +7,7 @@ from ..deploy import app
 # from ..models import user
 
 # controllers
-from . import error  # error controller
+# from . import error  # error controller
 # from . import api    # api controller
 
 
