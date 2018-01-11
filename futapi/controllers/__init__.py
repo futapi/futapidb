@@ -9,6 +9,7 @@ from ..deploy import app
 # controllers
 # from . import error  # error controller
 # from . import api    # api controller
+from . import db
 
 
 # ===    routes    ===
